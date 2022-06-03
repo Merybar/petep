@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \App\Models\Breed;
 use \App\Models\Owner;
+use \App\Models\Medication;
 
 class Animal extends Model
 {
@@ -22,4 +23,8 @@ class Animal extends Model
         return $this->belongsTo(Owner::class);
     }
 
+    public function medication()
+    {
+        return $this->belongsToMany(Medication::class);
+    }
 }
