@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+$eager = \App\Models\Animal::with('breed')->get();
+dd($eager);
+});
+
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
