@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use \App\Models\Breed;
 use \App\Models\Owner;
 use \App\Models\Medication;
+use \App\Models\Log;
 
 class Animal extends Model
 {
@@ -18,6 +19,11 @@ class Animal extends Model
         return $this->belongsTo(Breed::class);
     }
 
+    public function log()
+    {
+        return $this->hasMany(Log::class);
+    }
+
     public function owner()
     {
         return $this->belongsTo(Owner::class);
@@ -27,4 +33,7 @@ class Animal extends Model
     {
         return $this->belongsToMany(Medication::class);
     }
+
+    
 }
+

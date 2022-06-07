@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnimalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-$eager = \App\Models\Animal::with('breed')->get();
-dd($eager);
+
+Route::get('testquery',function(){
+$animal = \App\Models\Animal::with('log')->get();
+dd($animal);
+
 });
-
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+
+
+//AnimalController
+Route::get('/animals',[AnimalController::class,'showAll']);
+Route::get('/animal/{id}',[AnimalController::class,'showAnimal']);
