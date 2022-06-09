@@ -1,19 +1,19 @@
-@extends ('layouts.layout')
-
-@section('content')
-
-    <h2>My Pets</h2>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('My Pets') }}
+        </h2>
+    </x-slot>
 
     
-
-    <div class="row">
+    <div class="row" style="display:flex; flex-wrap:wrap">
         @foreach ($animals as $row)
-            <div class="card" style="width: 20rem;">
+            <div class="card" style="width: 25rem; margin:5px; background:white; position: relative; display:flex; flex-direction:column; word-wrap:break-word">
                 <h4 class="card-title" style="margin:2px"> {{$row->name}} </h4>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <img src='{{Storage::url($row->image)}} ' class="card-img-top" alt="..." style="width: 50px;">
+                            <img src='{{Storage::url($row->image)}} ' class="card-img-top" alt="..." style="width: 65px;">
                         </div>
                         <div class="col-9">
                             {{--@foreach ($log->medication as $row)--}}
@@ -34,4 +34,5 @@
     <br><br><br>
     <a href='/add/animal'  class="btn btn-primary">Add a new pet</a>
         
-@endsection
+</x-app-layout>
+

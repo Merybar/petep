@@ -18,14 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
+//voyager
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
 
-
 //AnimalController
-Route::get('/animals',[AnimalController::class,'showAll']);
-Route::get('/animal/{id}',[AnimalController::class,'showAnimal']);
+Route::get('/animals',[AnimalController::class,'showAll'])->middleware(['auth'])->name('animals');
+Route::get('/animal/{id}',[AnimalController::class,'showAnimal'])->middleware(['auth']);
+
+require __DIR__.'/auth.php';

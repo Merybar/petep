@@ -1,11 +1,13 @@
-@extends ('layouts.layout')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <img src="{{Storage::url($animal->image)}}" alt="" style="width: 45px; margin:10px"> 
+            {{ __('My Pets') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-
-    <h2> <img src="{{Storage::url($animal->image)}}" alt="" style="width: 45px; margin:10px"> {{$animal->name}}  </h2>
-    
-    <div class="row">
-        <div class="card col-md-4" style="width: 20rem; margin:2px">
+    <div class="row" style="display:flex; flex-wrap:wrap">
+        <div class="card col-md-4" style="width: 25rem; margin:5px; background:white; position: relative; display:flex; flex-direction:column; word-wrap:break-word">
             <div class="card-body">
                 <div class="row">
                     <div class="col-9">
@@ -17,10 +19,11 @@
                 </div>
                 <div id="collapseInfo">
                     <p class="card-text">
+                        <b>Name:</b> {{$animal->name}} <br>
                         <b>Birthday:</b> {{$animal->age}} <br>
                         <b>Breed:</b> {{$animal->breed->name}} <br>
-                        <b>size:</b> {{$log->size}} <br>
-                        <b>weight:</b> {{$log->weight}} <br>
+                        <b>Size:</b> {{$log->size}} <br>
+                        <b>Weight:</b> {{$log->weight}} <br>
                         <b>Remarks:</b> {{$animal->remarks}}
                     </p>
                     <a href="/edit/pet/{{$animal->id}}"  class="btn btn-primary">Edit</a> 
@@ -32,7 +35,7 @@
     
         <br>
     
-        <div class="card col-md-4" style="width: 20rem; margin:2px">
+        <div class="card col-md-4" style="width: 25rem; margin:5px; background:white; position: relative; display:flex; flex-direction:column; word-wrap:break-word">
             <div class="card-body">
                 <div class="row">
                     <div class="col-9">
@@ -43,9 +46,9 @@
                     </div>
                 </div>
                 <div id="collapseMeds">
-                    {{--@foreach ($log->medication as $row)
+                    @foreach ($log->medication as $row)
                         <p class="card-text">{{$row->name}} </p>
-                    @endforeach--}}
+                    @endforeach
                     <a href="/edit/medication/{{$animal->id}}"  class="btn btn-primary">Edit</a>
                 </div>
             </div>
@@ -53,7 +56,7 @@
     
         <br>
     
-        <div class="card col-md-4" style="width: 20rem; margin:2px">
+        <div class="card col-md-4" style="width: 25rem; margin:5px; background:white; position: relative; display:flex; flex-direction:column; word-wrap:break-word">
             <div class="card-body">
                 <div class="row">
                     <div class="col-9">
@@ -75,5 +78,8 @@
     </div>
     
 
+        
+</x-app-layout>
+
+
     
-@endsection
