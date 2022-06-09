@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Animal;
+use App\Models\Medication;
 
 class Log extends Model
 {
@@ -14,5 +15,9 @@ class Log extends Model
     public function animal()
     {
         return $this->belongsTo(Animal::class);
+    }
+    public function medication()
+    {
+        return $this->belongsToMany(Medication::class);
     }
 }

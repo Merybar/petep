@@ -19,11 +19,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('testquery',function(){
-$animal = \App\Models\Animal::with('log')->get();
-dd($animal);
-
-});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
