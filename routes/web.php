@@ -29,8 +29,10 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
+
+
 //AnimalController
 Route::get('/animals',[AnimalController::class,'showAll'])->middleware(['auth'])->name('animals');
 Route::get('/animal/{id}',[AnimalController::class,'showAnimal'])->middleware(['auth']);
-
+Route::get('/dashboard',[AnimalController::class,'showAll'])->middleware(['auth'])->name('dashboard');
 require __DIR__.'/auth.php';
