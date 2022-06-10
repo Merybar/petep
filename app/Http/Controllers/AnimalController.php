@@ -22,4 +22,7 @@ class AnimalController extends Controller
         //dd($result);
         return view('animal', compact('animal','log'));
     }
+
+    
+   
 }
