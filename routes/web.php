@@ -5,6 +5,7 @@ use App\Models\Animal;
 use App\Models\Medication;
 use App\Models\Log;
 use Barryvdh\DomPDF\Facade as PDF;
+use TCG\Voyager\Voyager;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-$eager = \App\Models\Animal::with('breed')->get();
+$eager = Animal::with('breed')->get();
 dd($eager);
 });
 
@@ -69,5 +70,21 @@ Route::get('Animalpdf/{id}', function ($id) {
 })->middleware('auth');
 
 
+//log
+Route::get('/log/add', function () {
+    $animals = App\Models\Animal::all();
+    $medications = App\Models\Medication:: get();
+    //dd($medications);
+    return view('createLog', compact('animals','medications'));
+})->middleware(['auth'])->name('addLog');
+
+Route::post('/logs',[LogController::class,'store'])->middleware(['auth'])->name('addLog');
+
+
+//AnimalController
+Route::get('/animals',[AnimalController::class,'showAll'])->middleware(['auth'])->name('animals');
+Route::get('/animal/{id}',[AnimalController::class,'showAnimal'])->middleware(['auth']);
+Route::get('/dashboard',[AnimalController::class,'showAll'])->middleware(['auth'])->name('dashboard');
+require __DIR__.'/auth.php';
 
 
