@@ -1,0 +1,129 @@
+h3.panel-title {font-size: 26px;}
+
+a.btn.btn-info {
+    font-size: 13px;
+}
+
+.voyager .table>thead>tr>th {
+    background: #ff5900;
+    border-color: #eaeaea;
+}
+
+.col-sm-12 {
+    background-color: #e1b078;
+}
+
+th.actions.text-right.dt-not-orderable.sorting_disabled {
+    background-color: #ff5900;
+}
+
+td.no-sort.no-click.bread-actions {
+    background-color: #ff5900;
+}
+
+.panel-body {
+    background-color: #e1b078;
+}
+
+.panel-body {
+    color: white;
+}
+
+.voyager .table>thead>tr>th {
+    background: #ff5900;
+    border-color: #eaeaea;
+}
+
+td.no-sort.no-click.bread-actions {
+    background-color: #e1b078;
+}
+
+.table>tbody>tr>th, .voyager .table>tfoot>tr>td, .voyager .table>tfoot>tr>th {
+    border-color: #ffffff;
+}
+
+td {
+    background-color: #e1b078;
+}
+
+input.form-control.input-sm {
+    background-color: #f3e0cb;
+}
+
+.app-container {
+    background-color: #e1b078;
+}
+
+
+.voyager .pagination .active span, .voyager .pagination .active>a, .voyager .pagination .active>a:focus, .voyager .pagination .active>a:hover, .voyager .pagination .active>span:focus, .voyager .pagination .active>span:hover {
+    background-color: #ff5900;
+    border-color: #fff;
+    color: #fff;
+    cursor: default;
+    outline: none;
+    z-index: 3;
+}
+
+
+h3.panel-title {
+    background-color: #d93910;
+}
+
+
+
+
+p {
+    color: white;
+}
+
+.voyagertext {
+    color: white;
+    font-size: larger;
+}
+
+.voyager .pagination>li>a {
+    color: #ffffff;
+}
+
+div#dataTable_info {
+    color: white;
+}
+
+select.form-control.input-sm {
+    color: #020202;
+}
+
+label {
+    color: white;
+}
+
+.panel-title {
+    color: #ffffff;
+    padding: 20px 30px;
+}
+
+
+h3.panel-title {
+    font-size: 140%;
+}
+
+p {
+    font-size: 120%;
+}
+
+select.form-control.input-sm {
+    background-color: #f3e0cb;
+}
+
+.voyager .panel {
+    background-color: #e1b078;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
+    margin-bottom: 22px;
+}
+
+td {
+    color: white;
+}
+
