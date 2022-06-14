@@ -1,75 +1,124 @@
-@extends ('layouts.layout')
-@section('content')
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px;
+}
 
-<h2> <img src="{{Storage::url($animal->image)}}" alt="" style="width: 45px; margin:10px"> {{$animal->name}}  </h2>
+table {
+
+}
+</style>
+<body>
+
+<h2>Basic info</h2>
+
+@section('content')
+<h1>Welcome.blade.php</h1>
+
+
+
+
+
+
+
+@endsection
+
+<table style="width:100%">
+
+  <tr>
+    <td>Birthday:</td>
+    <td><strong>date</strong></td>
+  </tr>
+  
+  <tr>
+    <td>Size:</td>
+    <td><strong>50 cm</strong></td>
+  </tr>
+  
+    <tr>
+    <td>Weight:</td>
+    <td><strong>19 kg</strong></td>
+  </tr>
+  
+  
+    <tr>
+    <td>BMI:</td>
+    <td><strong>75</strong></td>
+  </tr>
+  
+  
+    <tr>
+    <td>Chipnumber:</td>
+    <td><strong>123456789474</strong></td>
+  </tr>
+  
+  
+    <tr>
+    <td>Insuranc enumber:</td>
+    <td><strong>234434534</strong></td>
+  </tr>
+  
+</table>
 
 <div class="row">
-    <div class="card col-md-4" style="width: 20rem; margin:2px">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-9">
-                    <h3 class="card-title">Basic Info </h3> 
-                </div>
-                <div class="col-3">
-                    <a href="#collapseInfo" data-bs-toggle="collapse" > hier</a>
-                </div>
-            </div>
-            <div id="collapseInfo">
-                <p class="card-text">
-                    <b>Birthday:</b> {{$animal->age}} <br>
-                    <b>Breed:</b> {{$animal->breed->name}} <br>
-                    <b>size:</b> {{$log->size}} <br>
-                    <b>weight:</b> {{$log->weight}} <br>
-                    <b>Remarks:</b> {{$animal->remarks}}
-                </p>
-                <a href="/edit/pet/{{$animal->id}}"  class="btn btn-primary">Edit</a> 
-                <a href="/log/add" class="btn btn-primary">Update</a> 
-                <a href="#" class="btn btn-primary">Delete</a>
-            </div>
-        </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 text-center">
+    <button>Edit</button>
+    <button>Update</button>
+    <button>Delete</button>
     </div>
+    <div class="col-sm-4"></div>
+  </div>
+  <br>
 
-    <br>
 
-    <div class="card col-md-4" style="width: 20rem; margin:2px">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-9">
-                    <h3 class="card-title">Medication </h3>  
-                </div>
-                <div class="col-3">
-                    <a href="#collapseMeds" data-bs-toggle="collapse"> hier</a>
-                </div>
-            </div>
-            <div id="collapseMeds">
-                @foreach ($log->medication as $row)
-                    <p class="card-text">{{$row->name}} : <br> {{$row->notes}} </p>
-                @endforeach
-                <a href="/edit/medication/{{$animal->id}}"  class="btn btn-primary">Edit</a>
-            </div>
-        </div>
+<h2>Medication</h2>
+
+<table style="width:100%">
+
+  <tr>
+    <td><strong>Antibiotica</strong></td>
+    <td><strong>2 maal per dag</strong></td>
+  </tr>
+  
+  <tr>
+    <td><strong>Dafalgan</strong></td>
+    <td><strong>3 maal per dag</strong></td>
+  </tr>
+  
+</table>
+
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 text-center">
+    <button>Edit</button>
     </div>
-
-    <br>
-
-    <div class="card col-md-4" style="width: 20rem; margin:2px">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-9">
-                    <h3 class="card-title">Graphs </h3> 
-                </div>
-                <div class="col-3">
-                    <a href="#collapseGraph" data-bs-toggle="collapse"> hier</a>
-                </div>
-            </div>
-            <div id="collapseGraph">
-                <p class="card-text">  </p>
-                <a href="#" class="btn btn-primary">Weight</a>
-                <a href="#" class="btn btn-primary">Height</a> <br> <br>
-                <a href="#" class="btn btn-primary">BMI</a>
-                <a href="#" class="btn btn-primary">Meds</a>
-            </div>
-        </div>
+    <div class="col-sm-4"></div>
+  </div>
+  <br>
+  
+  
+  <h2>BMI</h2>
+  
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 text-center">
+    <button>Weight</button>
+    <button>Height</button>
+    <button>BMI</button>
+    <button>Meds</button>
     </div>
-</div>
-@endsection
+    <div class="col-sm-4"></div>
+  </div>
+  <br>
+  
+
+<p>To undestand the example better, we have added borders to the table.</p>
+@foreach ($Animals as $Animal)
+ {{$Animal->name}}<hr>
+   
+@endforeach
+</body>
+</html>
+
