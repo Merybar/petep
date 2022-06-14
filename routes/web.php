@@ -32,7 +32,9 @@ Route::group(['prefix' => 'admin'], function () {
 //log
 Route::get('/log/add', function () {
     $animals = App\Models\Animal::all();
-    return view('createLog', compact('animals'));
+    $medications = App\Models\Medication:: get();
+    //dd($medications);
+    return view('createLog', compact('animals','medications'));
 })->middleware(['auth'])->name('addLog');
 
 Route::post('/logs',[LogController::class,'store'])->middleware(['auth'])->name('addLog');

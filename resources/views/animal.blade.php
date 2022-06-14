@@ -23,7 +23,7 @@
                     <b>Remarks:</b> {{$animal->remarks}}
                 </p>
                 <a href="/edit/pet/{{$animal->id}}"  class="btn btn-primary">Edit</a> 
-                <a href="/update/pet/{{$animal->id}}" class="btn btn-primary">Update</a> 
+                <a href="/log/add" class="btn btn-primary">Update</a> 
                 <a href="#" class="btn btn-primary">Delete</a>
             </div>
         </div>
