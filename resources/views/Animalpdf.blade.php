@@ -107,20 +107,6 @@ footer {
 <table style="width:140%">
 
   <tr>
-    <td>Animal:</td>
-    <td>         </td>
-    <td><strong>{{$animal->pettype}}</strong></td>
-  </tr>
-
-  
-
-  <tr>
-    <td>Gender:</td>
-    <td>         </td>
-    <td><strong>{{$animal->gender}}</strong></td>
-  </tr>
-
-  <tr>
     <td>Breed:</td>
     <td>         </td>
     <td><strong>{{$animal->breed->name}}</strong></td>
@@ -145,12 +131,7 @@ footer {
   </tr>
   
 
-  <tr>
-    <td>BMI:</td>
-    <td>         </td>
-    <td><strong>75</strong></td>
-  </tr>
-  
+
   
   <tr>
     <td>Chipnumber:</td>
@@ -160,7 +141,7 @@ footer {
   
   
   <tr>
-    <td>Insuranc enumber:</td>
+    <td>Insurance number:</td>
     <td>         </td>
     <td><strong>234434534</strong></td>
   </tr>
