@@ -17,12 +17,12 @@ th.actions.text-right.dt-not-orderable.sorting_disabled {
     background-color: #ff5900;
 }
 
-td.no-sort.no-click.bread-actions {
-    background-color: #ff5900;
+th.actions.text-right.dt-not-orderable.sorting_disabled {
+    background-color: #888095;
 }
 
 .panel-body {
-    background-color: #e1b078;
+    background-color: #d3cdd9;
 }
 
 .panel-body {
@@ -30,12 +30,12 @@ td.no-sort.no-click.bread-actions {
 }
 
 .voyager .table>thead>tr>th {
-    background: #ff5900;
+    background: #888095;
     border-color: #eaeaea;
 }
 
 td.no-sort.no-click.bread-actions {
-    background-color: #e1b078;
+    background-color: #d3cdd9;
 }
 
 .table>tbody>tr>th, .voyager .table>tfoot>tr>td, .voyager .table>tfoot>tr>th {
@@ -51,7 +51,7 @@ input.form-control.input-sm {
 }
 
 .app-container {
-    background-color: #e1b078;
+    background-color: #d3cdd9;
 }
 
 
@@ -73,11 +73,11 @@ h3.panel-title {
 
 
 p {
-    color: white;
+    color: #846052;
 }
 
 .voyagertext {
-    color: white;
+    color: #342a4c;
     font-size: larger;
 }
 
@@ -123,7 +123,14 @@ select.form-control.input-sm {
     margin-bottom: 22px;
 }
 
+
 td {
-    color: white;
+    background-color: #d3cdd9;
+    color: #d3cdd9;
+}
+
+
+.col-sm-12 {
+    background-color: #d3cdd9;
 }
 
