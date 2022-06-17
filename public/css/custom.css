@@ -21,6 +21,10 @@ th.actions.text-right.dt-not-orderable.sorting_disabled {
     background-color: #888095;
 }
 
+th.actions.text-right.dt-not-orderable.sorting_disabled {
+    color: #5e6069;
+}
+
 .panel-body {
     background-color: #d3cdd9;
 }
@@ -126,7 +130,7 @@ select.form-control.input-sm {
 
 td {
     background-color: #d3cdd9;
-    color: #d3cdd9;
+
 }
 
 
