@@ -31,10 +31,11 @@ Route::get('/AddMedication', function () {
 Route::get('Animalpdf/{id}', function ($id) {
     $animal = Animal::where('id', $id)->first();
 
-    $logs = Log::with('medication')->where('animal_id',$id)->get(); 
+    $logs = Log::with('medication')->where('animal_id',$id)->get();
+    $log = Log:: with('medication')->where('animal_id', '=', $animal->id)->orderBy('id', 'DESC')->first(); 
 
 
-    $pdf = PDF::loadView('Animalpdf',compact('animal', 'logs'));
+    $pdf = PDF::loadView('Animalpdf',compact('animal', 'logs', 'log'));
     return $pdf->download('animal'.$id.'.pdf');
 
 })->middleware('auth');

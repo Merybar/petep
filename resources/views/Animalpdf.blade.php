@@ -107,20 +107,6 @@ footer {
 <table style="width:140%">
 
   <tr>
-    <td>Animal:</td>
-    <td>         </td>
-    <td><strong>{{$animal->pettype}}</strong></td>
-  </tr>
-
-  
-
-  <tr>
-    <td>Gender:</td>
-    <td>         </td>
-    <td><strong>{{$animal->gender}}</strong></td>
-  </tr>
-
-  <tr>
     <td>Breed:</td>
     <td>         </td>
     <td><strong>{{$animal->breed->name}}</strong></td>
@@ -135,40 +121,35 @@ footer {
   <tr>
     <td>Size:</td>
     <td>         </td>
-    <td><strong>{{$animal->size}} cm</strong></td>
+    <td><strong>{{$log->size}} cm</strong></td>
   </tr>
   
   <tr>
     <td>Weight:</td>
     <td>         </td>
-    <td><strong>{{$animal->weight}}</strong> <strong>kg</strong></td>
+    <td><strong>{{$log->weight}}</strong> <strong>kg</strong></td>
   </tr>
   
 
-  <tr>
-    <td>BMI:</td>
-    <td>         </td>
-    <td><strong>75</strong></td>
-  </tr>
-  
+
   
   <tr>
     <td>Chipnumber:</td>
     <td>         </td>
-    <td><strong>123456789474</strong></td>
+    <td><strong>{{$animal->chipnumber}}4</strong></td>
   </tr>
   
   
   <tr>
-    <td>Insuranc enumber:</td>
+    <td>Insurance number:</td>
     <td>         </td>
-    <td><strong>234434534</strong></td>
+    <td><strong>{{$animal->insuranceNumber}}</strong></td>
   </tr>
   
 </table>
 
 
-<h2>Medication</h2>
+<h2>Logs</h2>
 
 @php
 $total = 0;
@@ -178,13 +159,18 @@ $total = 0;
 
 
 
- <h3> Datum toediening: {{$log->created_at->format('d-m-Y')}} (weight: {{$log->weight}})</h3>
+ <h3> Log van: {{$log->created_at->format('d-m-Y')}}</h3>
+ <p> Weight: {{$log->weight}}</p>
+ <p> Size: {{$log->size}}</p>
+ 
+ <h4><strong>Medication:</strong></h4>
   @foreach($log->medication as $medication)
 
-  <h4><strong>{{$medication->name}} - {{$medication->price}} EUR</strong></h4><hr>
+  <p>{{$medication->name}} - {{$medication->price}} EUR</p>
  
     @php
        $total = $total + $medication->price;
+      
     @endphp
   @endforeach
 @endforeach
