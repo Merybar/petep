@@ -75,8 +75,7 @@
                                             <b>Remarks:</b> {{$dataTypeContent->remarks}} 
                                         </p>
                                         <a href="/admin/animals/{{$dataTypeContent->id}}/edit"  class="btn btn-primary">Edit</a> 
-                                        <a href="/update/pet/{{$dataTypeContent->id}}" class="btn btn-primary">Update</a> 
-                                        <a href="#" class="btn btn-primary">Delete</a>
+                                        <a href="/admin/logs/create" class="btn btn-primary">Update</a> 
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +93,6 @@
                                         @foreach ($log->medication as $row)
                                             <p class="card-text">{{$row->name}} : {{$row->price}} euro</p>
                                         @endforeach
-                                        <a href="/admin/medications/{{$dataTypeContent->id}}/edit"  class="btn btn-primary">Edit</a>
                                     </div>
                                 </div>
                             </div>
@@ -112,76 +110,50 @@
                                         <div>
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                             <canvas id="myChart" width="400" height="400"></canvas>
-                                            <script>
-                                                const ctx = document.getElementById('myChart').getContext('2d');
-                                                const myChart = new Chart(ctx, {
-                                                    type: 'line',
-                                                    data: {
-                                                        labels: ['12Nov', '15Nov', '23Nov', '4Dec', '16Dec', '20Dec'],
-                                                        datasets: [{
-                                                            label: 'Weight',
-                                                            data: [12, 19, 3, 5, 2, 3],
-                                                            hidden:false,
-                                                            backgroundColor: [
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)'
-                                                            ],
-                                                            borderColor: [
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)',
-                                                                'rgba(255, 99, 132, 0.2)'
-                                                            ],
-                                                            borderWidth: 1
-                                                        },
-                                                        {
-                                                            label: 'Size',
-                                                            data: [13, 18, 14, 20, 21, 20],
-                                                            hidden:false,
-                                                            backgroundColor: [
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                            ],
-                                                            borderColor: [
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)',
-                                                                'rgba(54, 162, 235, 0.2)'
-                                                            ],
-                                                            borderWidth: 1
-                                                        }]
-                                                    },
-                                                    options: {
-                                                        scales: {
-                                                            y: {
-                                                                beginAtZero: true
-                                                            }
-                                                        }
-                                                    }
-                                                });
-                                                $("#toggle").click(function() {
-                                                    chartInstance.data.datasets.forEach(function(ds) {
-                                                    ds.hidden = !ds.hidden;
-                                                });
-                                                chartInstance.update();
-                                                });
-                                            </script>
+                                            
 
                                         </div>
-                                        <a id="toggle"href="#" class="btn btn-primary">Weight</a>
-                                        <a href="#" class="btn btn-primary">Size</a> <br> <br>
+                                        <script>
+                                            const ctx = document.getElementById('myChart').getContext('2d');
+                                            const myChart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: ['12Nov', '15Nov', '23Nov', '4Dec', '16Dec', '20Dec'],
+                                                    datasets: [{
+                                                        label: 'Weight',
+                                                        data: [12, 19, 3, 5, 2, 3],
+                                                        hidden:false,
+                                                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                                        borderColor: 'rgba(255, 99, 132, 0.2)',
+                                                        borderWidth: 1
+                                                    },
+                                                    {
+                                                        label: 'Size',
+                                                        data: [13, 18, 14, 20, 21, 20],
+                                                        hidden:false,
+                                                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                                        borderColor: 'rgba(54, 162, 235, 0.2)',
+                                                        borderWidth: 1
+                                                    }]
+                                                },
+                                                options: {
+                                                    scales: {
+                                                        y: {
+                                                            beginAtZero: true
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                            function toggleChart(value){
+                                                const showValue= myChart.isDataVisible(value)
+                                                if(showValue === true){
+                                                    myChart.hide(value)
+                                                }
+                                                if(showValue === false){
+                                                    myChart.show(value)
+                                                }
+                                            }                                            
+                                        </script>
                                     </div>
                                 </div>
                             </div>
