@@ -142,3 +142,49 @@ td {
     background-color: #ccbfd9;
     color:#888095;
 }
+
+.voyager .pagination>li>a {
+    color: #888095;
+}
+
+.voyager .btn-group-sm>.btn, .voyager .btn-group-sm>.btn:hover, .voyager .btn.btn-sm, .voyager .btn.btn-sm:hover {
+    border-color: hsla(0,0%,100%,0);
+    border-width: 1px;
+    color: #e6d7d0;
+}
+
+.voyager .btn.btn-warning {
+    background: #846052;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    opacity: .9;
+}
+
+.btn.btn-primary {
+    background: #8c6b60;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    opacity: .9;
+}
+
+.voyager .btn.btn-danger {
+    background: #93756c;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    opacity: .9;
+}
+
+.voyager .pagination .active span, .voyager .pagination .active>a, .voyager .pagination .active>a:focus, .voyager .pagination .active>a:hover, .voyager .pagination .active>span:focus, .voyager .pagination .active>span:hover {
+    background-color: #d3cdd9;
+    border-color: #fff;
+    color: #fff;
+    cursor: default;
+    outline: none;
+    z-index: 3;
+}
+
+
+
