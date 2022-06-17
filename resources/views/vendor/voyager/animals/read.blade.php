@@ -42,34 +42,38 @@
 @stop
 
 @section('content')
+@php
+    use App\Models\Log;
+    $log = Log:: with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
+
+@endphp
     <div class="page-content read container-fluid">
         <div class="row">
             
             <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" style="width: 45px; margin:10px"> {{$dataTypeContent->name}}</h1>
             <div class="col-md-12">
 
-               
+               <div class="row align-self-start">
 
                     <div class="panel-body" style="padding-top:0;">
-                            <div class="card "" style="width: 20rem; margin:2px">
+                            <div class="card " style="width: 25rem; margin:2px">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h3 class="card-title">Basic Info </h3> 
-                                        </div>
-                                        <div class="col-3">
-                                            <a href="#collapseInfo" data-toggle="collapse" role="button" > hier</a>
+                                            <h3 class="card-title">Basic Info <a href="#collapseInfo" data-toggle="collapse" role="button"> ^</a></h3> 
                                         </div>
                                     </div>
                                     <div id="collapseInfo" class="collapse">
                                         <p class="card-text">
                                             <b>Birthday:</b> {{$dataTypeContent->age}} <br>
                                             <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
-                                            <b>size:</b>  <br>
-                                            <b>weight:</b>  <br>
-                                            <b>Remarks:</b> {{$dataTypeContent->remarks}}
+                                            <b>Size:</b> {{$log->size}} cm <br>
+                                            <b>Weight:</b> {{$log->weight}} g <br>
+                                            <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
+                                            <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
+                                            <b>Remarks:</b> {{$dataTypeContent->remarks}} 
                                         </p>
-                                        <a href="/edit/pet/{{$dataTypeContent->id}}"  class="btn btn-primary">Edit</a> 
+                                        <a href="/admin/animals/{{$dataTypeContent->id}}/edit"  class="btn btn-primary">Edit</a> 
                                         <a href="/update/pet/{{$dataTypeContent->id}}" class="btn btn-primary">Update</a> 
                                         <a href="#" class="btn btn-primary">Delete</a>
                                     </div>
@@ -78,41 +82,76 @@
 
                             <br>
                         
-                            <div class="card " style="width: 20rem; margin:2px">
+                            <div class="card " style="width: 25rem; margin:2px">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h3 class="card-title">Medication </h3>  
-                                        </div>
-                                        <div class="col-3">
-                                            <a href="#collapseMeds" data-toggle="collapse" role="button"> hier</a>
+                                            <h3 class="card-title">Medication <a href="#collapseMeds" data-toggle="collapse" role="button"> ^</a> </h3>  
                                         </div>
                                     </div>
                                     <div id="collapseMeds" class="collapse">
-                                       
-                                        <a href="/edit/medication/{{$dataTypeContent->id}}"  class="btn btn-primary">Edit</a>
+                                        @foreach ($log->medication as $row)
+                                            <p class="card-text">{{$row->name}} : {{$row->price}} euro</p>
+                                        @endforeach
+                                        <a href="/admin/medications/{{$dataTypeContent->id}}/edit"  class="btn btn-primary">Edit</a>
                                     </div>
                                 </div>
                             </div>
 
                             <br>
                         
-                            <div class="card " style="width: 20rem; margin:2px">
+                            <div class="card" style="width: 25rem; margin:2px">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h3 class="card-title">Graphs </h3> 
-                                        </div>
-                                        <div class="col-3">
-                                            <a href="#collapseGraph" data-toggle="collapse" role="button"> hier</a>
+                                            <h3 class="card-title">Graphs <a href="#collapseGraph" data-toggle="collapse" role="button"> ^</a></h3> 
                                         </div>
                                     </div>
                                     <div id="collapseGraph" class="collapse">
                                         <div>
-                                            <canvas id="myChart"></canvas>
+                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                            <canvas id="myChart" width="400" height="400"></canvas>
+                                            <script>
+                                                const ctx = document.getElementById('myChart').getContext('2d');
+                                                const myChart = new Chart(ctx, {
+                                                    type: 'line',
+                                                    data: {
+                                                        labels: ['Log1', 'Log2', 'Log3', 'Log4', 'Log5', 'Log6'],
+                                                        datasets: [{
+                                                            label: 'Weight',
+                                                            data: [12, 19, 3, 5, 2, 3],
+                                                            backgroundColor: [
+                                                                'rgba(255, 99, 132, 0.2)',
+                                                                'rgba(54, 162, 235, 0.2)',
+                                                                'rgba(255, 206, 86, 0.2)',
+                                                                'rgba(75, 192, 192, 0.2)',
+                                                                'rgba(153, 102, 255, 0.2)',
+                                                                'rgba(255, 159, 64, 0.2)'
+                                                            ],
+                                                            borderColor: [
+                                                                'rgba(255, 99, 132, 1)',
+                                                                'rgba(54, 162, 235, 1)',
+                                                                'rgba(255, 206, 86, 1)',
+                                                                'rgba(75, 192, 192, 1)',
+                                                                'rgba(153, 102, 255, 1)',
+                                                                'rgba(255, 159, 64, 1)'
+                                                            ],
+                                                            borderWidth: 1
+                                                        }]
+                                                    },
+                                                    options: {
+                                                        scales: {
+                                                            y: {
+                                                                beginAtZero: true
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            </script>
+
                                         </div>
                                         <a href="#" class="btn btn-primary">Weight</a>
-                                        <a href="#" class="btn btn-primary">Height</a> <br> <br>
+                                        <a href="#" class="btn btn-primary">Size</a> <br> <br>
                                     </div>
                                 </div>
                             </div>
