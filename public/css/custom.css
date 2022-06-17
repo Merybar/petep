@@ -51,7 +51,7 @@ td {
 }
 
 input.form-control.input-sm {
-    background-color: #f3e0cb;
+    background-color: #d3cdd9;
 }
 
 .app-container {
@@ -116,7 +116,7 @@ p {
 }
 
 select.form-control.input-sm {
-    background-color: #f3e0cb;
+    background-color: #d3cdd9;
 }
 
 .voyager .panel {
@@ -184,6 +184,20 @@ td {
     cursor: default;
     outline: none;
     z-index: 3;
+}
+
+.voyager .btn.btn-success {
+    background: #9a7e77;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    opacity: .9;
+}
+
+.voyager .btn.btn-info {
+    background-color: #8c6b60;
+    border-color: #22a7f0;
+    color: #fff;
 }
 
 
