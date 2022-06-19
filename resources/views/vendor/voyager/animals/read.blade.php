@@ -42,123 +42,131 @@
 @stop
 
 @section('content')
-@php
-    use App\Models\Log;
-    $log = Log:: with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
-
-@endphp
+    @php
+        use App\Models\Log;
+        $log = Log:: with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
+        $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('id', 'ASC');
+        $graphData=[];
+        $graphWeight=[];
+        $graphSize=[];
+    @endphp
+    @foreach ($logs as $data)
+        @php
+            array_push($graphData, $logs->created_at);
+            array_push($graphWeight, $logs->weight);
+            array_push($graphSize, $logs->size);
+        @endphp
+    @endforeach
+    @php
+        $graphData = json_encode($graphData);
+        $graphWeight = json_encode($graphWeight);
+        $graphSize = json_encode($graphSize);
+    @endphp
     <div class="page-content read container-fluid">
         <div class="row">
             
             <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" style="width: 45px; margin:10px"> {{$dataTypeContent->name}}</h1>
-            <div class="col-md-12">
-
-               <div class="row align-self-start">
-
-                    <div class="panel-body" style="padding-top:0;">
-                            <div class="card " style="width: 25rem; margin:2px">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h3 class="card-title">Basic Info <a href="#collapseInfo" data-toggle="collapse" role="button"> ^</a></h3> 
-                                        </div>
-                                    </div>
-                                    <div id="collapseInfo" class="collapse">
-                                        <p class="card-text">
-                                            <b>Name:</b> {{$dataTypeContent->name}} <br>
-                                            <b>Birthday:</b> {{$dataTypeContent->age}} <br>
-                                            <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
-                                            <b>Size:</b> {{$log->size}} cm <br>
-                                            <b>Weight:</b> {{$log->weight}} g <br>
-                                            <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
-                                            <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
-                                            <b>Remarks:</b> {{$dataTypeContent->remarks}} 
-                                        </p>
-                                        <a href="/admin/animals/{{$dataTypeContent->id}}/edit"  class="btn btn-primary">Edit</a> 
-                                        <a href="/admin/logs/create" class="btn btn-primary">Update</a> 
-                                    </div>
-                                </div>
+            <div class="row">
+                <div class="card col-md-4" style="width: 25em; margin:2px">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="card-title">Basic Info <a href="#collapseInfo" data-toggle="collapse" role="button"> ^</a></h3> 
                             </div>
-
-                            <br>
-                        
-                            <div class="card " style="width: 25rem; margin:2px">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h3 class="card-title">Medication <a href="#collapseMeds" data-toggle="collapse" role="button"> ^</a> </h3>  
-                                        </div>
-                                    </div>
-                                    <div id="collapseMeds" class="collapse">
-                                        @foreach ($log->medication as $row)
-                                            <p class="card-text">{{$row->name}} : {{$row->price}} euro</p>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-                        
-                            <div class="card" style="width: 25rem; margin:2px">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h3 class="card-title">Graphs <a href="#collapseGraph" data-toggle="collapse" role="button"> ^</a></h3> 
-                                        </div>
-                                    </div>
-                                    <div id="collapseGraph" class="collapse">
-                                        <div>
-                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                            <canvas id="myChart" width="400" height="400"></canvas>
-                                            
-
-                                        </div>
-                                        <script>
-                                            const ctx = document.getElementById('myChart').getContext('2d');
-                                            const myChart = new Chart(ctx, {
-                                                type: 'line',
-                                                data: {
-                                                    labels: ['12Nov', '15Nov', '23Nov', '4Dec', '16Dec', '20Dec'],
-                                                    datasets: [{
-                                                        label: 'Weight',
-                                                        data: [12, 19, 3, 5, 2, 3],
-                                                        hidden:false,
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                                        borderColor: 'rgba(255, 99, 132, 0.2)',
-                                                        borderWidth: 1
-                                                    },
-                                                    {
-                                                        label: 'Size',
-                                                        data: [13, 18, 14, 20, 21, 20],
-                                                        hidden:false,
-                                                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                                        borderColor: 'rgba(54, 162, 235, 0.2)',
-                                                        borderWidth: 1
-                                                    }]
-                                                },
-                                                options: {
-                                                    scales: {
-                                                        y: {
-                                                            beginAtZero: true
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                            function toggleChart(value){
-                                                const showValue= myChart.isDataVisible(value)
-                                                if(showValue === true){
-                                                    myChart.hide(value)
-                                                }
-                                                if(showValue === false){
-                                                    myChart.show(value)
-                                                }
-                                            }                                            
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        <div id="collapseInfo" class="collapse">
+                            <p class="card-text">
+                                <b>Name:</b> {{$dataTypeContent->name}} <br>
+                                <b>Birthday:</b> {{$dataTypeContent->age}} <br>
+                                <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
+                                <b>Size:</b> {{$log->size}} cm <br>
+                                <b>Weight:</b> {{$log->weight}} g <br>
+                                <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
+                                <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
+                                <b>Remarks:</b> {{$dataTypeContent->remarks}} 
+                            </p>
+                            <a href="/admin/animals/{{$dataTypeContent->id}}/edit"  class="btn btn-primary">Edit</a> 
+                            <a href="/admin/logs/create" class="btn btn-primary">Update</a> 
+                        </div>
                     </div>
+                </div>
 
+                <br>
+            
+                <div class="card col-md-4" style="width: 25rem; margin:2px">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="card-title">Medication <a href="#collapseMeds" data-toggle="collapse" role="button"> ^</a> </h3>  
+                            </div>
+                        </div>
+                        <div id="collapseMeds" class="collapse">
+                            @foreach ($log->medication as $row)
+                                <p class="card-text">{{$row->name}} : {{$row->price}} euro</p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+            
+                <div class="card col-md-4" style="width: 25rem; margin:2px">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h3 class="card-title">Graphs <a href="#collapseGraph" data-toggle="collapse" role="button"> ^</a></h3> 
+                            </div>
+                        </div>
+                        <div id="collapseGraph" class="collapse">
+                            <div>
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                <canvas id="myChart" width="400" height="400"></canvas>
+                                
+
+                            </div>
+                            <script>
+                                const ctx = document.getElementById('myChart').getContext('2d');
+                                const myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: [ {!!$graphData!!}],
+                                        datasets: [{
+                                            label: 'Weight',
+                                            data: [{!!$graphWeight!!}],
+                                            hidden:false,
+                                            backgroundColor: '#6f5b8a',
+                                            borderColor: '#6f5b8a',
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            label: 'Size',
+                                            data: [ {!!$graphSize!!}],
+                                            hidden:false,
+                                            backgroundColor: '#5b678a',
+                                            borderColor: '#5b678a',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                                function toggleChart(value){
+                                    const showValue= myChart.isDataVisible(value)
+                                    if(showValue === true){
+                                        myChart.hide(value)
+                                    }
+                                    if(showValue === false){
+                                        myChart.show(value)
+                                    }
+                                }                                            
+                            </script>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
