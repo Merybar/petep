@@ -44,8 +44,8 @@
     @section('content')
         @php
             use App\Models\Log;
-            $log = Log:: with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
-            $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('id');
+            $log = Log::with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
+            $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('id')->get();
             $graphData=[];
             $graphWeight=[];
             $graphSize=[];
@@ -119,6 +119,8 @@
                             </div>
                             <div id="collapseGraph" class="collapse">
                                 <div>
+                                {{$graphData}}
+                                {{$graphWeight}}
                                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                     <canvas id="myChart" width="400" height="400"></canvas>
                                     
