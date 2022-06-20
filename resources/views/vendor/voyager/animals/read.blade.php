@@ -65,9 +65,9 @@
         <div class="page-content read container-fluid">
             <div class="row">
                 
-                <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" style="width: 45px; margin:10px"> {{$dataTypeContent->name}}</h1>
+                <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" style="width: 45px; height: 45px; margin:10px; border-radius: 50%"> {{$dataTypeContent->name}}</h1>
                 <div class="row">
-                    <div class="card col-md-4" style="width: 25em; margin:2px">
+                    <div class="card col-md-4" style="width: 35em; margin:5px">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
@@ -93,7 +93,7 @@
 
                    
                 
-                    <div class="card col-md-4" style="width: 25rem; margin:2px">
+                    <div class="card col-md-4" style="width: 35rem; margin:5px">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
@@ -110,7 +110,7 @@
 
                    
                 
-                    <div class="card col-md-4" style="width: 25rem; margin:2px">
+                    <div class="card col-md-4" style="width: 35rem; margin:5px">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
