@@ -91,7 +91,7 @@
                         </div>
                     </div>
 
-                    <br>
+                   
                 
                     <div class="card col-md-4" style="width: 25rem; margin:2px">
                         <div class="card-body">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
 
-                    <br>
+                   
                 
                     <div class="card col-md-4" style="width: 25rem; margin:2px">
                         <div class="card-body">
