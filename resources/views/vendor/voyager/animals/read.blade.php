@@ -71,7 +71,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h3 class="card-title">Basic Info <a href="#collapseInfo" data-toggle="collapse" role="button"> ^</a></h3> 
+                                    <h3 class="card-title">Basic Info <a href="#collapseInfo" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3> 
                                 </div>
                             </div>
                             <div id="collapseInfo" class="collapse">
@@ -97,7 +97,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h3 class="card-title">Medication <a href="#collapseMeds" data-toggle="collapse" role="button"> ^</a> </h3>  
+                                    <h3 class="card-title">Medication <a href="#collapseMeds" data-toggle="collapse" role="button">  <i class="voyager-angle-down"></i> </a> </h3>  
                                 </div>
                             </div>
                             <div id="collapseMeds" class="collapse">
@@ -114,7 +114,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h3 class="card-title">Graphs <a href="#collapseGraph" data-toggle="collapse" role="button"> ^</a></h3> 
+                                    <h3 class="card-title">Graphs <a href="#collapseGraph" data-toggle="collapse" role="button">  <i class="voyager-angle-down"></i></a></h3> 
                                 </div>
                             </div>
                             <div id="collapseGraph" class="collapse">
