@@ -43,6 +43,7 @@
 
     @section('content')
         @php
+            use Carbon\Carbon;
             use App\Models\Log;
             $log = Log::with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
             $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('id')->get();
@@ -52,7 +53,8 @@
         @endphp
         @foreach ($logs as $data)
             @php
-                array_push($graphData, $data->created_at);
+                $time = Carbon::create($data->created_at)->format('d M Y');
+                array_push($graphData, $time) ;
                 array_push($graphWeight, $data->weight);
                 array_push($graphSize, $data->size);
             @endphp
@@ -70,9 +72,8 @@
                     <div class="card col-md-4" style="width: 35em; margin:5px">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-9">
-                                    <h3 class="card-title">Basic Info <a href="#collapseInfo" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3> 
-                                </div>
+                                    <h3 class="card-title col-sm-9">Basic Info</h3>
+                                    <h3 class="col-sm-3"><a href="#collapseInfo" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
                             </div>
                             <div id="collapseInfo" class="collapse">
                                 <p class="card-text">
@@ -96,9 +97,8 @@
                     <div class="card col-md-4" style="width: 35rem; margin:5px">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-9">
-                                    <h3 class="card-title">Medication <a href="#collapseMeds" data-toggle="collapse" role="button">  <i class="voyager-angle-down"></i> </a> </h3>  
-                                </div>
+                                <h3 class="card-title col-sm-9">Medication</h3>
+                                <h3 class="col-sm-3"><a href="#collapseMeds" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
                             </div>
                             <div id="collapseMeds" class="collapse">
                                 @foreach ($log->medication as $row)
@@ -113,19 +113,19 @@
                     <div class="card col-md-4" style="width: 35rem; margin:5px">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-9">
-                                    <h3 class="card-title">Graphs <a href="#collapseGraph" data-toggle="collapse" role="button">  <i class="voyager-angle-down"></i></a></h3> 
-                                </div>
+                                <h3 class="card-title col-sm-9">Graphs</h3>
+                                <h3 class="col-sm-3"><a href="#collapseGraph" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
                             </div>
                             <div id="collapseGraph" class="collapse">
                                 <div>
-                                {{$graphData}}
-                                {{$graphWeight}}
                                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                     <canvas id="myChart" width="400" height="400"></canvas>
-                                    
-
                                 </div>
+                                <div class="buttonBox">
+                                    <a class="btn btn-info" onclick="toggleChart(0)">Weight</a>
+                                    <a class="btn btn-info" onclick="toggleChart(1)">Size</a>
+                                </div>
+
                                 <script>
                                     const ctx = document.getElementById('myChart').getContext('2d');
                                     const myChart = new Chart(ctx, {
@@ -158,13 +158,15 @@
                                         }
                                     });
                                     function toggleChart(value){
-                                        const showValue= myChart.isDataVisible(value)
-                                        if(showValue === true){
-                                            myChart.hide(value)
+                                        const visible = myChart.getDataVisibility(value);
+                                        myChart.toggleDataVisibility(value)
+                                        if(visible === true){
+                                            myChart.setDatasetVisibility(value, false)
                                         }
-                                        if(showValue === false){
-                                            myChart.show(value)
+                                        if(visible === false){
+                                            myChart.setDatasetVisibility(value, true)
                                         }
+                                        myChart.update();
                                     }                                            
                                 </script>
                             </div>
