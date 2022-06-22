@@ -46,7 +46,7 @@
             use Carbon\Carbon;
             use App\Models\Log;
             $log = Log::with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
-            $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('id')->get();
+            $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('created_at')->get();
             $birthday = Carbon::create($dataTypeContent->birthday) -> format('d F Y');
             $now = Carbon::now();
             $age = $now -> diffInMonths($birthday);
