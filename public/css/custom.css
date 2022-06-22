@@ -222,6 +222,18 @@ td {
     color: #342a4c;
 }
 
+.pagination>li>a, .pagination>li>span {
+    background-color: #d3cdd9;
+    border: 1px solid #fff;
+    color: #337ab7;
+    float: left;
+    line-height: 1.42857143;
+    margin-left: -1px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+}
+
 
 
 .panel-body .select2-selection{
