@@ -85,7 +85,7 @@
                                     <b>Age:</b> {{$age}} jaar <br>
                                     <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
                                     <b>Size:</b> {{$log->size}} cm <br>
-                                    <b>Weight:</b> {{$log->weight}} g <br>
+                                    <b>Weight:</b> {{$log->weight}} kg <br>
                                     <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
                                     <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
                                     <b>Remarks:</b> {{$dataTypeContent->remarks}} 
@@ -105,9 +105,11 @@
                                 <h3 class="col-sm-3"><a href="#collapseMeds" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
                             </div>
                             <div id="collapseMeds" class="collapse">
-                                @foreach ($log->medication as $row)
-                                    <p class="card-text">{{$row->name}} : {{$row->price}} euro</p>
-                                @endforeach
+                                <ul>
+                                    @foreach ($log->medication as $row)
+                                        <li class="card-text" style="font-size:18px">{{$row->name}} : {{$row->price}} euro</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>
