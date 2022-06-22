@@ -73,6 +73,10 @@ h3 {
 }
 
 h4 {
+  color: #342a4c;
+}
+
+h5 {
   color: #fff;
 }
 
@@ -181,7 +185,7 @@ $total = 0;
   @endforeach
 @endforeach
 
-<h4><span class='total'>Totaal medicatie: <b>{{$total}} EUR</b></span><h4>
+<h5><span class='total'>Totaal medicatie: <b>{{$total}} EUR</b></span><h5>
   
   
 

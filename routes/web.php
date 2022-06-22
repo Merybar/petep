@@ -32,8 +32,8 @@ Route::get('/AddMedication', function () {
 Route::get('Animalpdf/{id}', function ($id) {
     $animal = Animal::where('id', $id)->first();
 
-    $logs = Log::with('medication')->where('animal_id',$id)->get();
-    $log = Log:: with('medication')->where('animal_id', '=', $animal->id)->orderBy('id', 'DESC')->first(); 
+    $logs = Log::with('medication')->where('animal_id',$id)->orderBy('created_at')->get();
+    $log = Log:: with('medication')->where('animal_id', '=', $animal->id)->orderBy('created_at', 'DESC')->first(); 
 
     $birthday = Carbon::create($animal->birthday) -> format('d F Y');
     $now = Carbon::now();
@@ -50,7 +50,7 @@ Route::get('Animalpdf/{id}', function ($id) {
     $pdf = PDF::loadView('Animalpdf',compact('animal', 'logs', 'log', 'age'));
 
     return $pdf->download('animal'.$id.'.pdf');
-    
+    //dd($logs);
 
 })->middleware('auth');
 
