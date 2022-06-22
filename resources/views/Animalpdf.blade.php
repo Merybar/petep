@@ -169,21 +169,27 @@ $total = 0;
 
 
 
- <h3> Log van: {{$log->created_at->format('d-m-Y')}}</h3>
- <p> Weight: {{$log->weight}}</p>
- <p> Size: {{$log->size}}</p>
- 
- <h4><strong>Medication:</strong></h4>
-  @foreach($log->medication as $medication)
+  <h3> Log van: {{$log->created_at->format('d-m-Y')}}</h3>
+  <p> Weight: {{$log->weight}}</p>
+  <p> Size: {{$log->size}}</p>
+  
+  <h4><strong>Medication:</strong></h4>
 
-  <p>{{$medication->name}} - {{$medication->price}} EUR</p>
- 
-    @php
-       $total = $total + $medication->price;
-      
-    @endphp
-  @endforeach
+    @if (!$log->medication->isEmpty())
+      @foreach($log->medication as $medication)
+        <p>{{$medication->name}} - {{$medication->price}} EUR</p>
+        @php
+          $total = $total + $medication->price;
+          
+        @endphp
+      @endforeach
+    @else                                    
+      <p>{{$animal->name}} was not taking any medication.</p>
+    @endif
 @endforeach
+
+
+
 
 <h5><span class='total'>Totaal medicatie: <b>{{$total}} EUR</b></span><h5>
   

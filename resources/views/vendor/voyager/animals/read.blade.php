@@ -115,11 +115,16 @@
                                 <h3 class="col-sm-3"><a href="#collapseMeds" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
                             </div>
                             <div id="collapseMeds" class="collapse">
-                                <ul>
-                                    @foreach ($log->medication as $row)
-                                        <li class="card-text" style="font-size:18px">{{$row->name}} : {{$row->price}} euro</li>
-                                    @endforeach
-                                </ul>
+                                @if (!$log->medication->isEmpty())
+                                    <ul>
+                                        @foreach ($log->medication as $row)
+                                            <li class="card-text" style="font-size:18px">{{$row->name}} : {{$row->price}} euro</li>
+                                        @endforeach
+                                    </ul>
+                                @else                                    
+                                    <p>{{$dataTypeContent->name}} is currently not taking any medication.</p>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>
