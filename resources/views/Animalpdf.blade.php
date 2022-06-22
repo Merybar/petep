@@ -17,19 +17,19 @@ table, th, td {
 
 h1 {
     text-align: center;
-    color: #F17B61;
+    color: #888095;
     font-weight: 200;
     font-size: 52px;
 }
 
 h2 {
   text-align: center;
-  color: #F17B61;
+  color: #888095;
 }
 
 
 td {
-  color: #BE5038;
+  color: #342a4c;
   text-align: left;
 }
 
@@ -38,7 +38,7 @@ div.footer {
     width: 100%;
     margin-left: -1px;
     padding: 0px;
-    background: #BE5038;
+    background: #342a4c;
     text-align: center;
     height: auto;
     width: 705px;
@@ -63,17 +63,17 @@ div.footer {
 span.total {
     margin-top: 34px!important;
     display: block;
-    background-color: #f17b6138;
+    background-color: #888095;
     padding: 20px;
     border-radius: 7px;
 }
 
 h3 {
-  color: #BE5038;
+  color: #342a4c;
 }
 
 h4 {
-  color: #BE5038;
+  color: #fff;
 }
 
 hr {
@@ -81,7 +81,7 @@ hr {
     border-bottom: 1px;
     border-left: 0px;
     border-top: 1px;
-    border-color: #dfdfdf;
+    border-color: #342a4c;
     border-style: dashed;
     border-width: 1px;
 }
@@ -136,7 +136,7 @@ footer {
   <tr>
     <td>Chipnumber:</td>
     <td>         </td>
-    <td><strong>{{$animal->chipnumber}}4</strong></td>
+    <td><strong>{{$animal->chipnumber}}</strong></td>
   </tr>
   
   
