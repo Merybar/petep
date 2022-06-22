@@ -113,9 +113,9 @@ footer {
   </tr>
 
   <tr>
-    <td>Age:</td>
+    <td>Birthday:</td>
     <td>         </td>
-    <td><strong>{{$animal->age}}</strong></td>
+    <td><strong>{{$animal->birthday}}</strong></td>
   </tr>
   
   <tr>
