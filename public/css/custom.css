@@ -1,20 +1,13 @@
 h3.panel-title {font-size: 26px;}
 
-a.btn.btn-info {
-    font-size: 13px;
-}
 
-.voyager .table>thead>tr>th {
-    background: #ff5900;
-    border-color: #eaeaea;
-}
 
 .col-sm-12 {
-    background-color: #e1b078;
+    background-color: #d3cdd9;
 }
 
 th.actions.text-right.dt-not-orderable.sorting_disabled {
-    background-color: #ff5900;
+    background-color: #888095;
 }
 
 th.actions.text-right.dt-not-orderable.sorting_disabled {
@@ -27,11 +20,11 @@ th.actions.text-right.dt-not-orderable.sorting_disabled {
 
 .panel-body {
     background-color: #d3cdd9;
+    color: #d3cdd9;
 }
 
-.panel-body {
-    color: white;
-}
+
+
 
 .voyager .table>thead>tr>th {
     background: #888095;
@@ -47,7 +40,7 @@ td.no-sort.no-click.bread-actions {
 }
 
 td {
-    background-color: #e1b078;
+    background-color: #d3cdd9;
 }
 
 input.form-control.input-sm {
@@ -60,9 +53,9 @@ input.form-control.input-sm {
 
 
 .voyager .pagination .active span, .voyager .pagination .active>a, .voyager .pagination .active>a:focus, .voyager .pagination .active>a:hover, .voyager .pagination .active>span:focus, .voyager .pagination .active>span:hover {
-    background-color: #ff5900;
-    border-color: #fff;
-    color: #fff;
+    background-color: #888095;
+    border-color: #342a4c;
+    color: #342a4c;
     cursor: default;
     outline: none;
     z-index: 3;
@@ -70,7 +63,7 @@ input.form-control.input-sm {
 
 
 h3.panel-title {
-    background-color: #d93910;
+    background-color: #888095;
 }
 
 
@@ -90,15 +83,15 @@ p {
 }
 
 div#dataTable_info {
-    color: white;
+    color: #342a4c;
 }
 
 select.form-control.input-sm {
-    color: #020202;
+    color: #342a4c;
 }
 
 label {
-    color: white;
+    color: #342a4c;
 }
 
 .panel-title {
@@ -120,7 +113,7 @@ select.form-control.input-sm {
 }
 
 .voyager .panel {
-    background-color: #e1b078;
+    background-color: #d3cdd9;
     border: 1px solid transparent;
     border-radius: 4px;
     box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
@@ -148,7 +141,7 @@ td {
 }
 
 .voyager .btn-group-sm>.btn, .voyager .btn-group-sm>.btn:hover, .voyager .btn.btn-sm, .voyager .btn.btn-sm:hover {
-    border-color: hsla(0,0%,100%,0);
+    border-color: #342a4c;
     border-width: 1px;
     color: #e6d7d0;
 }
@@ -162,42 +155,71 @@ td {
 }
 
 .btn.btn-primary {
-    background: #8c6b60;
+    background: #846052;
     border: 0;
     border-radius: 3px;
-    color: #fff;
+    color: #e6d7d0;
     opacity: .9;
 }
 
 .voyager .btn.btn-danger {
-    background: #93756c;
+    background: #846052;
     border: 0;
     border-radius: 3px;
-    color: #fff;
+    color: #e6d7d0;
     opacity: .9;
 }
 
 .voyager .pagination .active span, .voyager .pagination .active>a, .voyager .pagination .active>a:focus, .voyager .pagination .active>a:hover, .voyager .pagination .active>span:focus, .voyager .pagination .active>span:hover {
     background-color: #d3cdd9;
-    border-color: #fff;
-    color: #fff;
+    border-color: #342a4c;
+    color: #342a4c;
     cursor: default;
     outline: none;
     z-index: 3;
 }
 
 .voyager .btn.btn-success {
-    background: #9a7e77;
+    background: #846052;
     border: 0;
     border-radius: 3px;
-    color: #fff;
+    color: #e6d7d0;
     opacity: .9;
 }
 
 .voyager .btn.btn-info {
-    background-color: #8c6b60;
-    border-color: #22a7f0;
-    color: #fff;
+    font-size: 13px;
+    color: #e6d7d0;
+    border: #846052;
+    background-color: #846052;
+}
+
+.voyager .app-footer{
+    background: #bab0c4;
+}
+
+.voyager nav.navbar.navbar-default.navbar-fixed-top.navbar-top{
+    background: #888095;
+}
+
+
+.voyager input{
+    background: #ccbfd9;
+    border: #ccbfd9;
+    color: #342a4c;
+}
+
+
+.voyager input[type=file]{
+    background: #d3cdd9;
+    border: #d3cdd9;
+    color: #342a4c;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    background: #ccbfd9;
+    border: #ccbfd9;
+    color: #342a4c;
 }
 
 .pagination>li>a, .pagination>li>span {
@@ -214,3 +236,19 @@ td {
 
 
 
+.panel-body .select2-selection{
+    background: #ccbfd9;
+    border: #ccbfd9;
+}
+
+
+
+.panel-footer {
+    background: #d3cdd9;
+    border: #d3cdd9;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #342a4c;
+    border: #342a4c;
+}
