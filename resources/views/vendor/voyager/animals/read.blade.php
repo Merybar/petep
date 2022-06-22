@@ -47,6 +47,9 @@
             use App\Models\Log;
             $log = Log::with('medication')->where('animal_id', '=', $dataTypeContent->id)->orderBy('id', 'DESC')->first(); 
             $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('id')->get();
+            $birthday = Carbon::create($dataTypeContent->birthday) -> format('d F Y');
+            $now = Carbon::now();
+            $age = $now -> diffInYears($birthday);
             $graphData=[];
             $graphWeight=[];
             $graphSize=[];
@@ -78,7 +81,8 @@
                             <div id="collapseInfo" class="collapse">
                                 <p class="card-text">
                                     <b>Name:</b> {{$dataTypeContent->name}} <br>
-                                    <b>Birthday:</b> {{$dataTypeContent->age}} <br>
+                                    <b>Birthday:</b> {{$birthday}} <br>
+                                    <b>Age:</b> {{$age}} jaar <br>
                                     <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
                                     <b>Size:</b> {{$log->size}} cm <br>
                                     <b>Weight:</b> {{$log->weight}} g <br>
