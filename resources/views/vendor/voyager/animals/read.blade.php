@@ -49,11 +49,21 @@
             $logs = Log::with('medication')->where('animal_id','=', $dataTypeContent->id)->orderBy('id')->get();
             $birthday = Carbon::create($dataTypeContent->birthday) -> format('d F Y');
             $now = Carbon::now();
-            $age = $now -> diffInYears($birthday);
+            $age = $now -> diffInMonths($birthday);
+
+            if($age>11){
+                $age = $now -> diffInYears($birthday);
+                $age = ("{$age} years");
+            }else{
+                $age = ("{$age} moths");
+            };
             $graphData=[];
             $graphWeight=[];
             $graphSize=[];
         @endphp
+        
+        
+
         @foreach ($logs as $data)
             @php
                 $time = Carbon::create($data->created_at)->format('d M Y');
@@ -82,7 +92,7 @@
                                 <p class="card-text">
                                     <b>Name:</b> {{$dataTypeContent->name}} <br>
                                     <b>Birthday:</b> {{$birthday}} <br>
-                                    <b>Age:</b> {{$age}} jaar <br>
+                                    <b>Age:</b> {{$age}} <br>
                                     <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
                                     <b>Size:</b> {{$log->size}} cm <br>
                                     <b>Weight:</b> {{$log->weight}} kg <br>

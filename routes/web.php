@@ -5,6 +5,7 @@ use App\Models\Animal;
 use App\Models\Medication;
 use App\Models\Log;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 
 
 /*
@@ -34,9 +35,22 @@ Route::get('Animalpdf/{id}', function ($id) {
     $logs = Log::with('medication')->where('animal_id',$id)->get();
     $log = Log:: with('medication')->where('animal_id', '=', $animal->id)->orderBy('id', 'DESC')->first(); 
 
+    $birthday = Carbon::create($animal->birthday) -> format('d F Y');
+    $now = Carbon::now();
+    $age = $now -> diffInMonths($birthday);
+    
+    if($age>11){
+        $age = $now -> diffInYears($birthday);
+        $age = ("{$age} years");
+    }else{
+        $age = ("{$age} moths");
+    };
+    
 
-    $pdf = PDF::loadView('Animalpdf',compact('animal', 'logs', 'log'));
+    $pdf = PDF::loadView('Animalpdf',compact('animal', 'logs', 'log', 'age'));
+
     return $pdf->download('animal'.$id.'.pdf');
+    
 
 })->middleware('auth');
 

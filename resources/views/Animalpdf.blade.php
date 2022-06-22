@@ -117,6 +117,12 @@ footer {
     <td>         </td>
     <td><strong>{{$animal->birthday}}</strong></td>
   </tr>
+
+  <tr>
+    <td>Age:</td>
+    <td>         </td>
+    <td><strong>{{$age}}</strong></td>
+  </tr>
   
   <tr>
     <td>Size:</td>
