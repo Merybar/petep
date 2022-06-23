@@ -15,12 +15,12 @@ th.actions.text-right.dt-not-orderable.sorting_disabled {
 }
 
 th.actions.text-right.dt-not-orderable.sorting_disabled {
-    color: #5e6069;
+    color: #fff;
 }
 
 .panel-body {
     background-color: #d3cdd9;
-    color: #d3cdd9;
+    color: #342a4c;
 }
 
 
@@ -29,18 +29,25 @@ th.actions.text-right.dt-not-orderable.sorting_disabled {
 .voyager .table>thead>tr>th {
     background: #888095;
     border-color: #eaeaea;
+    color: #fff;
 }
 
 td.no-sort.no-click.bread-actions {
     background-color: #d3cdd9;
+    color: #342a4c;
 }
 
 .table>tbody>tr>th, .voyager .table>tfoot>tr>td, .voyager .table>tfoot>tr>th {
     border-color: #ffffff;
+    color: #fff;
 }
 
 td {
     background-color: #d3cdd9;
+    color: #342a4c;
+}
+p{
+    color: #342a4c;;
 }
 
 input.form-control.input-sm {
@@ -67,10 +74,12 @@ h3.panel-title {
 }
 
 
+h3.card-title{
+    color: #342a4c;
+}
 
-
-p {
-    color: #846052;
+.card-body{
+    color: #342a4c;
 }
 
 .voyagertext {
@@ -121,10 +130,6 @@ select.form-control.input-sm {
 }
 
 
-td {
-    background-color: #d3cdd9;
-
-}
 
 
 .col-sm-12 {
@@ -143,22 +148,23 @@ td {
 .voyager .btn-group-sm>.btn, .voyager .btn-group-sm>.btn:hover, .voyager .btn.btn-sm, .voyager .btn.btn-sm:hover {
     border-color: #342a4c;
     border-width: 1px;
-    color: #e6d7d0;
+    color: #fff;
 }
 
 .voyager .btn.btn-warning {
     background: #846052;
     border: 0;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #fff;
     opacity: .9;
+    margin: 3px;
 }
 
 .btn.btn-primary {
     background: #846052;
     border: 0;
     border-radius: 5px;
-    color: #e6d7d0;
+    color: #fff;
     opacity: .9;
     margin: 3px;
 }
@@ -166,10 +172,12 @@ td {
 .voyager .btn.btn-danger {
     background: #846052;
     border: 0;
-    border-radius: 3px;
-    color: #e6d7d0;
+    border-radius: 5px;
+    color: #fff;
     opacity: .9;
+    margin: 3px;
 }
+
 
 .voyager .pagination .active span, .voyager .pagination .active>a, .voyager .pagination .active>a:focus, .voyager .pagination .active>a:hover, .voyager .pagination .active>span:focus, .voyager .pagination .active>span:hover {
     background-color: #d3cdd9;
@@ -183,18 +191,19 @@ td {
 .voyager .btn.btn-success {
     background: #846052;
     border: 0;
-    border-radius: 3px;
-    color: #e6d7d0;
+    border-radius: 5px;
+    color: #fff;
     opacity: .9;
+    margin: 3px;
 }
 
 .voyager .btn.btn-info {
-    font-size: 13px;
-    color: #e6d7d0;
-    border: #846052;
-    background-color: #846052;
-    margin: 5px;
-    border-radius:5px;
+    background: #846052;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    opacity: .9;
+    margin: 3px;
 }
 
 .voyager .app-footer{
@@ -242,6 +251,7 @@ td {
 .panel-body .select2-selection{
     background: #ccbfd9;
     border: #ccbfd9;
+    color: #342a4c;
 }
 
 
