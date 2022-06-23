@@ -157,9 +157,10 @@ td {
 .btn.btn-primary {
     background: #846052;
     border: 0;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #e6d7d0;
     opacity: .9;
+    margin: 3px;
 }
 
 .voyager .btn.btn-danger {
@@ -192,6 +193,8 @@ td {
     color: #e6d7d0;
     border: #846052;
     background-color: #846052;
+    margin: 5px;
+    border-radius:5px;
 }
 
 .voyager .app-footer{
@@ -251,4 +254,17 @@ td {
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     color: #342a4c;
     border: #342a4c;
+}
+
+.buttonBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.card{
+    width: 35rem; 
+    margin: 20px;
+    border-radius: 10px;
 }

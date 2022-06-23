@@ -6,35 +6,8 @@
         <h1 class="page-title">
             <i class="{{ $dataType->icon }}"></i> {{ __('voyager::generic.viewing') }} {{ ucfirst($dataType->getTranslatedAttribute('display_name_singular')) }} &nbsp;
 
-            @can('edit', $dataTypeContent)
-                <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-info">
-                    <i class="glyphicon glyphicon-pencil"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.edit') }}</span>
-                </a>
             
-            @endcan
-            @can('delete', $dataTypeContent)
-                @if($isSoftDeleted)
-                    <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
-                        <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
-                    </a>
-                @else
-                    <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-danger delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
-                        <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
-                    </a>
-                @endif
-            @endcan
-            @can('browse', $dataTypeContent)
-                <a href="{{ route('voyager.'.$dataType->slug.'.index') }}" class="btn btn-warning">
-                    <i class="glyphicon glyphicon-list"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.return_to_list') }}</span>
-                </a>
-            @endcan
-
-            @can('edit', $dataTypeContent)
-                <a href="/Animalpdf/{{$dataTypeContent->getKey() }}" class="btn btn-info">
-                    <i class="glyphicon glyphicon-th-large"></i> <span class="hidden-xs hidden-sm">Pdf</span>
-                </a>
             
-            @endcan
 
 
         </h1>
@@ -82,7 +55,7 @@
                 
                 <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" style="width: 45px; height: 45px; margin:10px; border-radius: 50%"> {{$dataTypeContent->name}}</h1>
                 <div class="row">
-                    <div class="card col-md-4" style="width: 35em; margin:5px">
+                    <div class="card col-md-4">
                         <div class="card-body">
                             <div class="row">
                                     <h3 class="card-title col-sm-9">Basic Info</h3>
@@ -100,15 +73,38 @@
                                     <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
                                     <b>Remarks:</b> {{$dataTypeContent->remarks}} 
                                 </p>
-                                <a href="/admin/animals/{{$dataTypeContent->id}}/edit"  class="btn btn-primary">Edit</a> 
-                                <a href="/admin/logs/create" class="btn btn-primary">Update</a> 
+                                @can('edit', $dataTypeContent)
+                                    <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-primary">
+                                        <i class="glyphicon glyphicon-pencil"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.edit') }}</span>
+                                    </a>
+                                
+                                @endcan
+                                <a href="/admin/logs/create" class="btn btn-primary" ><i class="voyager-plus"></i> Update</a> 
+                                @can('delete', $dataTypeContent)
+                                    @if($isSoftDeleted)
+                                        <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
+                                            <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
+                                        </a>
+                                    @else
+                                        <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-primary delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
+                                            <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
+                                        </a>
+                                    @endif
+                                @endcan
+
+                                @can('edit', $dataTypeContent)
+                                    <a href="/Animalpdf/{{$dataTypeContent->getKey() }}" class="btn btn-primary">
+                                        <i class="glyphicon glyphicon-th-large"></i> <span class="hidden-xs hidden-sm">Pdf</span>
+                                    </a>
+                                
+                                @endcan
                             </div>
                         </div>
                     </div>
 
                    
                 
-                    <div class="card col-md-4" style="width: 35rem; margin:5px">
+                    <div class="card col-md-4">
                         <div class="card-body">
                             <div class="row">
                                 <h3 class="card-title col-sm-9">Medication</h3>
@@ -131,7 +127,7 @@
 
                    
                 
-                    <div class="card col-md-4" style="width: 35rem; margin:5px">
+                    <div class="card col-md-4">
                         <div class="card-body">
                             <div class="row">
                                 <h3 class="card-title col-sm-9">Graphs</h3>
