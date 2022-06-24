@@ -68,7 +68,6 @@ input.form-control.input-sm {
     z-index: 3;
 }
 
-
 h3.panel-title {
     background-color: #888095;
 }
@@ -274,7 +273,22 @@ select.form-control.input-sm {
 }
 
 .card{
-    width: 35rem; 
-    margin: 20px;
+    margin: 10px;
     border-radius: 10px;
+}
+
+.voyager span.hamburger-inner {
+    color: white;
+}
+
+.hamburger-inner {
+    background: #d3cdd9;
+}
+
+.hamburger-inner::before {
+    background: #d3cdd9;
+}
+
+.hamburger-inner::after{
+    background: #d3cdd9;
 }

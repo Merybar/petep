@@ -55,140 +55,145 @@
                 
                 <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" style="width: 45px; height: 45px; margin:10px; border-radius: 50%"> {{$dataTypeContent->name}}</h1>
                 <div class="row">
-                    <div class="card col-md-4">
-                        <div class="card-body">
-                            <div class="row">
-                                    <h3 class="card-title col-sm-9">Basic Info</h3>
-                                    <h3 class="col-sm-3"><a href="#collapseInfo" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                        <h3 class="card-title col-sm-9">Basic Info</h3>
+                                        <h3 class="col-sm-3"><a href="#collapseInfo" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
+                                </div>
+                                <div id="collapseInfo" class="collapse">
+                                    <p class="card-text">
+                                        <b>Name:</b> {{$dataTypeContent->name}} <br>
+                                        <b>Birthday:</b> {{$birthday}} <br>
+                                        <b>Age:</b> {{$age}} <br>
+                                        <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
+                                        <b>Size:</b> {{$log->size}} cm <br>
+                                        <b>Weight:</b> {{$log->weight}} kg <br>
+                                        <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
+                                        <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
+                                        <b>Remarks:</b> {{$dataTypeContent->remarks}} 
+                                    </p>
+                                    @can('edit', $dataTypeContent)
+                                        <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-primary">
+                                            <i class="glyphicon glyphicon-pencil"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.edit') }}</span>
+                                        </a>
+                                    
+                                    @endcan
+                                    <a href="/admin/logs/create" class="btn btn-primary" ><i class="voyager-plus"></i> Update</a> 
+                                    @can('delete', $dataTypeContent)
+                                        @if($isSoftDeleted)
+                                            <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
+                                                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
+                                            </a>
+                                        @else
+                                            <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-primary delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
+                                                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
+                                            </a>
+                                        @endif
+                                    @endcan
+    
+                                    @can('edit', $dataTypeContent)
+                                        <a href="/Animalpdf/{{$dataTypeContent->getKey() }}" class="btn btn-primary">
+                                            <i class="glyphicon glyphicon-th-large"></i> <span class="hidden-xs hidden-sm">Pdf</span>
+                                        </a>
+                                    
+                                    @endcan
+                                </div>
                             </div>
-                            <div id="collapseInfo" class="collapse">
-                                <p class="card-text">
-                                    <b>Name:</b> {{$dataTypeContent->name}} <br>
-                                    <b>Birthday:</b> {{$birthday}} <br>
-                                    <b>Age:</b> {{$age}} <br>
-                                    <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
-                                    <b>Size:</b> {{$log->size}} cm <br>
-                                    <b>Weight:</b> {{$log->weight}} kg <br>
-                                    <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
-                                    <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
-                                    <b>Remarks:</b> {{$dataTypeContent->remarks}} 
-                                </p>
-                                @can('edit', $dataTypeContent)
-                                    <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-primary">
-                                        <i class="glyphicon glyphicon-pencil"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.edit') }}</span>
-                                    </a>
-                                
-                                @endcan
-                                <a href="/admin/logs/create" class="btn btn-primary" ><i class="voyager-plus"></i> Update</a> 
-                                @can('delete', $dataTypeContent)
-                                    @if($isSoftDeleted)
-                                        <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
-                                            <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
-                                        </a>
-                                    @else
-                                        <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-primary delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
-                                            <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
-                                        </a>
+                        </div>
+                    </div>
+                    
+
+                   <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h3 class="card-title col-sm-9">Medication</h3>
+                                    <h3 class="col-sm-3"><a href="#collapseMeds" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
+                                </div>
+                                <div id="collapseMeds" class="collapse">
+                                    @if (!$log->medication->isEmpty())
+                                        <ul>
+                                            @foreach ($log->medication as $row)
+                                                <li class="card-text" style="font-size:18px">{{$row->name}} : {{$row->price}} euro</li>
+                                            @endforeach
+                                        </ul>
+                                    @else                                    
+                                        <p>{{$dataTypeContent->name}} is currently not taking any medication.</p>
                                     @endif
-                                @endcan
-
-                                @can('edit', $dataTypeContent)
-                                    <a href="/Animalpdf/{{$dataTypeContent->getKey() }}" class="btn btn-primary">
-                                        <i class="glyphicon glyphicon-th-large"></i> <span class="hidden-xs hidden-sm">Pdf</span>
-                                    </a>
-                                
-                                @endcan
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                   
                 
-                    <div class="card col-md-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <h3 class="card-title col-sm-9">Medication</h3>
-                                <h3 class="col-sm-3"><a href="#collapseMeds" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
-                            </div>
-                            <div id="collapseMeds" class="collapse">
-                                @if (!$log->medication->isEmpty())
-                                    <ul>
-                                        @foreach ($log->medication as $row)
-                                            <li class="card-text" style="font-size:18px">{{$row->name}} : {{$row->price}} euro</li>
-                                        @endforeach
-                                    </ul>
-                                @else                                    
-                                    <p>{{$dataTypeContent->name}} is currently not taking any medication.</p>
-                                @endif
-                                
-                            </div>
-                        </div>
-                    </div>
 
-                   
-                
-                    <div class="card col-md-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <h3 class="card-title col-sm-9">Graphs</h3>
-                                <h3 class="col-sm-3"><a href="#collapseGraph" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
-                            </div>
-                            <div id="collapseGraph" class="collapse">
-                                <div>
-                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                    <canvas id="myChart" width="400" height="400"></canvas>
+                   <div  class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h3 class="card-title col-sm-9">Graphs</h3>
+                                    <h3 class="col-sm-3"><a href="#collapseGraph" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
                                 </div>
-                                <div class="buttonBox">
-                                    <a class="btn btn-info" onclick="toggleChart(0)">Weight</a>
-                                    <a class="btn btn-info" onclick="toggleChart(1)">Size</a>
-                                </div>
+                                <div id="collapseGraph" class="collapse">
+                                    <div>
+                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                        <canvas id="myChart" width="400" height="400"></canvas>
+                                    </div>
+                                    <div class="buttonBox">
+                                        <a class="btn btn-info" onclick="toggleChart(0)">Weight</a>
+                                        <a class="btn btn-info" onclick="toggleChart(1)">Size</a>
+                                    </div>
 
-                                <script>
-                                    const ctx = document.getElementById('myChart').getContext('2d');
-                                    const myChart = new Chart(ctx, {
-                                        type: 'line',
-                                        data: {
-                                            labels: {!!$graphData!!},
-                                            datasets: [{
-                                                label: 'Weight',
-                                                data: {!!$graphWeight!!},
-                                                hidden:false,
-                                                backgroundColor: '#6f5b8a',
-                                                borderColor: '#6f5b8a',
-                                                borderWidth: 1
+                                    <script>
+                                        const ctx = document.getElementById('myChart').getContext('2d');
+                                        const myChart = new Chart(ctx, {
+                                            type: 'line',
+                                            data: {
+                                                labels: {!!$graphData!!},
+                                                datasets: [{
+                                                    label: 'Weight',
+                                                    data: {!!$graphWeight!!},
+                                                    hidden:false,
+                                                    backgroundColor: '#6f5b8a',
+                                                    borderColor: '#6f5b8a',
+                                                    borderWidth: 1
+                                                },
+                                                {
+                                                    label: 'Size',
+                                                    data: {!!$graphSize!!},
+                                                    hidden:false,
+                                                    backgroundColor: '#5b678a',
+                                                    borderColor: '#5b678a',
+                                                    borderWidth: 1
+                                                }]
                                             },
-                                            {
-                                                label: 'Size',
-                                                data: {!!$graphSize!!},
-                                                hidden:false,
-                                                backgroundColor: '#5b678a',
-                                                borderColor: '#5b678a',
-                                                borderWidth: 1
-                                            }]
-                                        },
-                                        options: {
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: true
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
                                                 }
                                             }
-                                        }
-                                    });
-                                    function toggleChart(value){
-                                        const visible = myChart.getDataVisibility(value);
-                                        myChart.toggleDataVisibility(value)
-                                        if(visible === true){
-                                            myChart.setDatasetVisibility(value, false)
-                                        }
-                                        if(visible === false){
-                                            myChart.setDatasetVisibility(value, true)
-                                        }
-                                        myChart.update();
-                                    }                                            
-                                </script>
+                                        });
+                                        function toggleChart(value){
+                                            const visible = myChart.getDataVisibility(value);
+                                            myChart.toggleDataVisibility(value)
+                                            if(visible === true){
+                                                myChart.setDatasetVisibility(value, false)
+                                            }
+                                            if(visible === false){
+                                                myChart.setDatasetVisibility(value, true)
+                                            }
+                                            myChart.update();
+                                        }                                            
+                                    </script>
+                                </div>
                             </div>
-                        </div>
+                        </div>  
                     </div>
+                    
                 </div>
             </div>
         </div>
