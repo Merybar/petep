@@ -129,21 +129,6 @@ footer {
   </tr>
   
   <tr>
-    <td>Size:</td>
-    <td>         </td>
-    <td><strong>{{$log->size}} cm</strong></td>
-  </tr>
-  
-  <tr>
-    <td>Weight:</td>
-    <td>         </td>
-    <td><strong>{{$log->weight}}</strong> <strong>kg</strong></td>
-  </tr>
-  
-
-
-  
-  <tr>
     <td>Chipnumber:</td>
     <td>         </td>
     <td><strong>{{$animal->chipnumber}}</strong></td>
@@ -155,8 +140,27 @@ footer {
     <td>         </td>
     <td><strong>{{$animal->insuranceNumber}}</strong></td>
   </tr>
-  
-</table>
+
+  @if (is_null($log))
+  </table>  
+  Add Logs to see the current size and weight of {{$animal->name}}
+  @else
+    <tr>
+      <td>Size:</td>
+      <td>         </td>
+      <td><strong>{{$log->size}} cm</strong></td>
+    </tr>
+    
+    <tr>
+      <td>Weight:</td>
+      <td>         </td>
+      <td><strong>{{$log->weight}}</strong> <strong>kg</strong></td>
+    </tr>
+  </table>
+  @endif
+
+  <br>
+
 
 
 <h2>Logs</h2>
@@ -165,15 +169,16 @@ footer {
 $total = 0;
 @endphp
 
-@foreach($logs as $log)
+@if (is_null($log))
+  You have not added any logs yet for {{$animal->name}}. 
+@else  
+  @foreach($logs as $log)
 
+    <h3> Log van: {{$log->created_at->format('d-m-Y')}}</h3>
+    <p> Weight: {{$log->weight}}</p>
+    <p> Size: {{$log->size}}</p>
 
-
-  <h3> Log van: {{$log->created_at->format('d-m-Y')}}</h3>
-  <p> Weight: {{$log->weight}}</p>
-  <p> Size: {{$log->size}}</p>
-  
-  <h4><strong>Medication:</strong></h4>
+    <h4><strong>Medication:</strong></h4>
 
     @if (!$log->medication->isEmpty())
       @foreach($log->medication as $medication)
@@ -186,8 +191,8 @@ $total = 0;
     @else                                    
       <p>{{$animal->name}} was not taking any medication.</p>
     @endif
-@endforeach
-
+  @endforeach
+@endif
 
 
 

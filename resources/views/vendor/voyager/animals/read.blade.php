@@ -68,44 +68,61 @@
                                         <b>Birthday:</b> {{$birthday}} <br>
                                         <b>Age:</b> {{$age}} <br>
                                         <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
-                                        <b>Size:</b> {{$log->size}} cm <br>
-                                        <b>Weight:</b> {{$log->weight}} kg <br>
                                         <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
                                         <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>
-                                        <b>Remarks:</b> {{$dataTypeContent->remarks}} 
-                                    </p>
-                                    @can('edit', $dataTypeContent)
-                                        <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-primary">
-                                            <i class="glyphicon glyphicon-pencil"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.edit') }}</span>
-                                        </a>
-                                    
-                                    @endcan
-                                    <a href="/admin/logs/create" class="btn btn-primary" ><i class="voyager-plus"></i> Update</a> 
-                                    @can('delete', $dataTypeContent)
-                                        @if($isSoftDeleted)
-                                            <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
-                                                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
-                                            </a>
-                                        @else
-                                            <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-primary delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
-                                                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
-                                            </a>
+                                        @if (is_null($log))
+                                            You have not added any logs yet for {{$dataTypeContent->name}}. <br> 
+                                        @else                                    
+                                            <b>Size:</b> {{$log->size}} cm <br>       
                                         @endif
-                                    @endcan
-    
-                                    @can('edit', $dataTypeContent)
-                                        <a href="/Animalpdf/{{$dataTypeContent->getKey() }}" class="btn btn-primary">
-                                            <i class="glyphicon glyphicon-th-large"></i> <span class="hidden-xs hidden-sm">Pdf</span>
-                                        </a>
+
+                                        @if (is_null($log))
+
+                                        @else
+                                            <b>Weight:</b> {{$log->weight}} kg <br>
+                                        @endif
                                     
-                                    @endcan
+                                        @if (is_null($log))   
+                                            There are currently no remarks for {{$dataTypeContent->name}}.                                           
+                                        @else
+                                            <b>Remarks:</b> {{$log->remarks}}                                 
+                                        @endif
+                                    </p>
+                                    <div class="buttonBox">
+                                        @can('edit', $dataTypeContent)
+                                            <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-primary">
+                                                <i class="glyphicon glyphicon-pencil"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.edit') }}</span>
+                                            </a>
+                                        
+                                        @endcan
+                                        <a href="/admin/logs/create" class="btn btn-primary" ><i class="voyager-plus"></i> Update</a> 
+                                        @can('delete', $dataTypeContent)
+                                            @if($isSoftDeleted)
+                                                <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
+                                                    <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
+                                                </a>
+                                            @else
+                                                <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-primary delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
+                                                    <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
+                                                </a>
+                                            @endif
+                                        @endcan
+        
+                                        @can('edit', $dataTypeContent)
+                                            <a href="/Animalpdf/{{$dataTypeContent->getKey() }}" class="btn btn-primary">
+                                                <i class="glyphicon glyphicon-th-large"></i> <span class="hidden-xs hidden-sm">Pdf</span>
+                                            </a>
+                                        
+                                        @endcan
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                     
 
-                   <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -113,7 +130,9 @@
                                     <h3 class="col-sm-3"><a href="#collapseMeds" data-toggle="collapse" role="button"> <i class="voyager-angle-down"></i></a></h3>
                                 </div>
                                 <div id="collapseMeds" class="collapse">
-                                    @if (!$log->medication->isEmpty())
+                                    @if (is_null($log))
+                                        <p>You have not yet filled any logs for {{$dataTypeContent->name}}.</p> 
+                                    @elseif(!$log->medication->isEmpty())
                                         <ul>
                                             @foreach ($log->medication as $row)
                                                 <li class="card-text" style="font-size:18px">{{$row->name}} : {{$row->price}} euro</li>
@@ -129,7 +148,7 @@
                     </div>
                 
 
-                   <div  class="col-md-4">
+                    <div  class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -141,11 +160,14 @@
                                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                         <canvas id="myChart" width="400" height="400"></canvas>
                                     </div>
-                                    <div class="buttonBox">
-                                        <a class="btn btn-info" onclick="toggleChart(0)">Weight</a>
-                                        <a class="btn btn-info" onclick="toggleChart(1)">Size</a>
-                                    </div>
-
+                                    @if (is_null($log))
+                                        <p>Add a log to use this graph.</p> 
+                                    @else
+                                        <div class="buttonBox">
+                                            <a class="btn btn-info" onclick="toggleChart(0)">Weight</a>
+                                            <a class="btn btn-info" onclick="toggleChart(1)">Size</a>
+                                        </div>
+                                    @endif
                                     <script>
                                         const ctx = document.getElementById('myChart').getContext('2d');
                                         const myChart = new Chart(ctx, {
