@@ -32,9 +32,11 @@ Route::get('/AddMedication', function () {
 Route::get('Animalpdf/{id}', function ($id) {
     $animal = Animal::where('id', $id)->first();
 
+    // 1: get all logs from the animal with {id}    2:get last log from the animal with {id}
     $logs = Log::with('medication')->where('animal_id',$id)->orderBy('created_at')->get();
     $log = Log:: with('medication')->where('animal_id', '=', $animal->id)->orderBy('created_at', 'DESC')->first(); 
 
+    //age calculation
     $birthday = Carbon::create($animal->birthday) -> format('d F Y');
     $now = Carbon::now();
     $age = $now -> diffInMonths($birthday);
