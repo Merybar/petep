@@ -27,6 +27,9 @@
             if($age>11){
                 $age = $now -> diffInYears($birthday);
                 $age = ("{$age} years");
+            }else if($age==0){
+                $age = $now -> diffInDays($birthday);
+                $age = ("{$age} days");
             }else{
                 $age = ("{$age} moths");
             };
@@ -66,7 +69,7 @@
                                     <p class="card-text">
                                         <b>Name:</b> {{$dataTypeContent->name}} <br>
                                         <b>Birthday:</b> {{$birthday}} <br>
-                                        <b>Age:</b> {{$age}} <br>
+                                        <b>Age:</b> {{$age}} old<br>
                                         <b>Breed:</b> {{$dataTypeContent->breed->name}} <br>
                                         <b>Insurance number:</b> {{$dataTypeContent->insuranceNumber}} <br>
                                         <b>Chipnumber:</b> {{$dataTypeContent->chipnumber}}  <br>

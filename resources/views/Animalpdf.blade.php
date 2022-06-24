@@ -125,7 +125,7 @@ footer {
   <tr>
     <td>Age:</td>
     <td>         </td>
-    <td><strong>{{$age}}</strong></td>
+    <td><strong>{{$age}} old</strong></td>
   </tr>
   
   <tr>

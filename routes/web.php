@@ -42,6 +42,9 @@ Route::get('Animalpdf/{id}', function ($id) {
     if($age>11){
         $age = $now -> diffInYears($birthday);
         $age = ("{$age} years");
+    }else if($age==0){
+        $age = $now -> diffInDays($birthday);
+        $age = ("{$age} days");
     }else{
         $age = ("{$age} moths");
     };
