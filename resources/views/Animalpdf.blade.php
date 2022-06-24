@@ -196,7 +196,7 @@ $total = 0;
 
 
 
-<h5><span class='total'>Totaal medicatie: <b>{{$total}} EUR</b></span><h5>
+<h5><span class='total'>Totaal medicatie prijs: <b>{{$total}} EUR</b></span><h5>
   
   
 

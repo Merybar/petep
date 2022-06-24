@@ -53,7 +53,7 @@
         <div class="page-content read container-fluid">
             <div class="row">
                 
-                <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" style="width: 45px; height: 45px; margin:10px; border-radius: 50%"> {{$dataTypeContent->name}}</h1>
+                <h1><img src="{{Storage::url($dataTypeContent->image)}}" alt="" class="animalImage"> {{$dataTypeContent->name}}</h1>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">

@@ -292,3 +292,11 @@ select.form-control.input-sm {
 .hamburger-inner::after{
     background: #d3cdd9;
 }
+
+.animalImage{
+   width: 45px; 
+   height: 45px; 
+   margin:10px; 
+   border-radius: 50%;
+   overflow: hidden;
+}
