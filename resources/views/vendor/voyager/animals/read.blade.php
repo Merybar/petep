@@ -99,14 +99,17 @@
                                     </p>
 
                                     {{--card footer with buttons --}}
-                                    <div class="buttonBox card-footer">
+                                    <div class=" card-footer">
                                         @can('edit', $dataTypeContent)
                                             <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-primary">
                                                 <i class="glyphicon glyphicon-pencil"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.edit') }}</span>
                                             </a>
                                         
                                         @endcan
-                                        <a href="/admin/logs/create" class="btn btn-primary" ><i class="voyager-plus"></i> Update</a> 
+                                        <a href="/admin/logs/create" class="btn btn-primary">
+                                            <i class="voyager-plus"></i> <span class="hidden-xs hidden-sm">Update</span>
+                                        </a>
+                                    
                                         @can('delete', $dataTypeContent)
                                             @if($isSoftDeleted)
                                                 <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
