@@ -14,5 +14,9 @@ class Breed extends Model
     {
         return $this->hasMany(Animal::class);
     }
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }
 
