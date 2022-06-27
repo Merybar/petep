@@ -32,7 +32,7 @@
                 $age = $now -> diffInDays($birthday);
                 $age = ("{$age} days");
             }else{
-                $age = ("{$age} moths");
+                $age = ("{$age} months");
             };
             $graphData=[];
             $graphWeight=[];
