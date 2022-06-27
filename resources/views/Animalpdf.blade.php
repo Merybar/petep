@@ -143,7 +143,7 @@ footer {
 
   @if (is_null($log))
   </table>  
-  Add Logs to see the current size and weight of {{$animal->name}}
+  {{$animal->name}} has not yet been assigned any size or weight. 
   @else
     <tr>
       <td>Size:</td>
@@ -170,7 +170,7 @@ $total = 0;
 @endphp
 
 @if (is_null($log))
-  You have not added any logs yet for {{$animal->name}}. 
+  You have not added any logs for {{$animal->name}} yet. 
 @else  
   @foreach($logs as $log)
 
